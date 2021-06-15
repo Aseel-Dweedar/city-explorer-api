@@ -1,28 +1,30 @@
 # Project Name
 
-**Author**: Your Name Goes Here
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Author**: Aseel
+**Version**: 1.0.0
 
 ## Overview
-Is a developer I want to get the requeued data for my app.
+
+Is a developer I want to provide the weather as dynamic data for my app.
 
 ## Getting Started
+
 Link it to my react app with local host to get the data.
 
 ## Architecture
 
-
 ## Change Log
 
-Name of feature: Set up your server repository
+Name of feature: Weather (live)
 
 Estimate of time needed to complete: 2 hours.
 
-Start time: 6:30 pm
+Start time: 2:30 pm
 
-Finish time: 9:00 pm
+Finish time: 5:40 pm
 
-Actual time needed to complete: 2.30 hours
+Actual time needed to complete: 2:10 hours
 
 ## Credit and Collaborations
---------
+
+---
