@@ -1,9 +1,10 @@
 const express = require("express"); // require the express package
 const app = express(); // initialize your express app instance
-const weatherData = require("./data/weather.json");
+// const weatherData = require("./data/weather.json");
 require("dotenv").config();
 const PORT = process.env.PORT;
 const WEATHER_BIT_KEY = process.env.WEATHER_BIT_KEY;
+const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
 const cors = require("cors");
 const axios = require("axios");
 
@@ -44,4 +45,35 @@ class Weather {
     }
 }
 
-app.listen(PORT); // kick start the express server to work
+app.get("/movies", (req, res) => {
+    const city = req.query.city;
+    if (city) {
+        const moviesUrl = `https://api.themoviedb.org/3/search/movie?api_key=${MOVIE_API_KEY}&query=${city}`;
+        axios
+            .get(moviesUrl)
+            .then((response) => {
+                console.log(response);
+                const responseData = response.data.results.map((movie) => new Movies(movie));
+                res.json(responseData);
+            })
+            .catch((error) => {
+                res.send(error.message);
+            });
+    } else {
+        res.send("please provide the City name");
+    }
+});
+
+class Movies {
+    constructor(moviesData) {
+        this.title = moviesData.title;
+        this.overview = moviesData.overview;
+        this.average_vote = moviesData.vote_average;
+        this.total_votes = moviesData.vote_count;
+        this.image_url = moviesData.poster_path;
+        this.popularity = moviesData.popularity;
+        this.released_on = moviesData.release_date;
+    }
+}
+
+app.listen(PORT, () => console.log(`listening ${PORT}`)); // kick start the express server to work
